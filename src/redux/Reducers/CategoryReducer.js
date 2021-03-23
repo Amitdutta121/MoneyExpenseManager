@@ -21,14 +21,17 @@ const categoryReducer = (state= initialState,actions) =>{
                 ]
             }
         case EDIT_CATEGORY:
-            let object = state.categoryList.filter((value)=> value.id === actions.payload.id)
-            object.name = actions.payload.name
+            let dum = [...state.categoryList];
+            for(let i=0; i<dum.length; i++){
+                if (dum[i].id === actions.payload.id){
+                    dum[i].name = actions.payload.name
+                }
+                console.log(actions);
+            }
             return {
                 ...state,
-                categoryList: [
-                    ...state.categoryList,
-                    ...object
-                ]
+                categoryList: [...dum]
+
             }
         default:
             return state;

@@ -43,7 +43,7 @@ function App() {
           name="Screen_A"
           component={ScreenA}
           options={{
-            title: 'Screen_A Title'
+            title: 'Screen_A'
             // drawerIcon: ({ focused }) => (
             //   <FontAwesome5
             //     name="autoprefixer"
@@ -54,10 +54,10 @@ function App() {
           }}
         />
         <Drawer.Screen
-          name="Screen_B"
+          name="Manage Category"
           component={CategoryScreen}
           options={{
-            title: 'Screen_B Title'
+            title: 'Manage Category'
             // drawerIcon: ({ focused }) => (
             //   <FontAwesome5
             //     name="btc"
