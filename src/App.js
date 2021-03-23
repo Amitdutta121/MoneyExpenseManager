@@ -5,6 +5,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import ScreenA from './ScreenA';
 import ScreenB from './ScreenB';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import CategoryScreen from "./screens/CategoryScreen";
+
 
 const Drawer = createDrawerNavigator();
 
@@ -28,7 +30,7 @@ function App() {
           gestureEnabled: true,
           headerTitleAlign: 'center',
           headerStyle: {
-            backgroundColor: '#0080ff'
+            backgroundColor: '#19678d'
           },
           headerTintColor: '#ffffff',
           headerTitleStyle: {
@@ -53,7 +55,7 @@ function App() {
         />
         <Drawer.Screen
           name="Screen_B"
-          component={ScreenB}
+          component={CategoryScreen}
           options={{
             title: 'Screen_B Title'
             // drawerIcon: ({ focused }) => (
