@@ -6,6 +6,8 @@ import ScreenA from './ScreenA';
 import ScreenB from './ScreenB';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import CategoryScreen from "./screens/CategoryScreen";
+import AddExpenseScreen from "./screens/AddExpenseScreen";
+import ExpenseListScreen from "./screens/ExpenseListScreen";
 
 
 const Drawer = createDrawerNavigator();
@@ -54,7 +56,7 @@ function App() {
           }}
         />
         <Drawer.Screen
-          name="Manage Category"
+          name="manageCategory"
           component={CategoryScreen}
           options={{
             title: 'Manage Category'
@@ -67,6 +69,35 @@ function App() {
             // )
           }}
         />
+          <Drawer.Screen
+              name="addExpense"
+              component={AddExpenseScreen}
+              options={{
+                  title: 'Add Expense'
+                  // drawerIcon: ({ focused }) => (
+                  //   <FontAwesome5
+                  //     name="btc"
+                  //     size={focused ? 25 : 20}
+                  //     color={focused ? '#0080ff' : '#999999'}
+                  //   />
+                  // )
+              }}
+          />
+
+          <Drawer.Screen
+              name="expenseList"
+              component={ExpenseListScreen}
+              options={{
+                  title: 'Manage Expense'
+                  // drawerIcon: ({ focused }) => (
+                  //   <FontAwesome5
+                  //     name="btc"
+                  //     size={focused ? 25 : 20}
+                  //     color={focused ? '#0080ff' : '#999999'}
+                  //   />
+                  // )
+              }}
+          />
       </Drawer.Navigator>
     </NavigationContainer>
   )
