@@ -2,7 +2,7 @@ import React, {Component,useState} from 'react';
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import {Button, TextInput} from "react-native-paper";
 import {Picker} from "@react-native-picker/picker";
-import {weekList, monthList, yearList} from "../util/DateUtil";
+import {weekList, monthList, yearList} from "../../util/DateUtil";
 
 const ExpenseFilterModal = (props)=>{
     const [amount, setAmount] = useState("");

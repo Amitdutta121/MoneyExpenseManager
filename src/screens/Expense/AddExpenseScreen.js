@@ -13,8 +13,8 @@ import { TextInput,Button } from 'react-native-paper';
 import DatePicker from 'react-native-datepicker'
 import {useSelector, useDispatch} from "react-redux";
 import {Picker} from '@react-native-picker/picker';
-import {validateAddExpense} from "../services/expenseService";
-import {addExpense} from "../redux/Actions/expense";
+import {validateAddExpense} from "../../services/expenseService";
+import {addExpense} from "../../redux/Actions/expense";
 import moment from "moment";
 
 const AddExpenseScreen = (props)=>{
@@ -36,7 +36,18 @@ const AddExpenseScreen = (props)=>{
         }else{
             alert("Please add a category first");
         }
+
     },[])
+
+    React.useEffect(() => {
+        const unsubscribe = props.navigation.addListener('focus', () => {
+            setAmount(0);
+            setDate(moment(). format('DD-MM-YYYY'));
+            setNote("");
+        });
+
+        return unsubscribe;
+    }, [props.navigation]);
 
 
     const handleSubmit = ()=>{
@@ -74,7 +85,7 @@ const AddExpenseScreen = (props)=>{
                     maxDate="31-12-3000"
                     confirmBtnText="Confirm"
                     cancelBtnText="Cancel"
-                    iconSource={require('../assets/img/calendar.png')}
+                    iconSource={require('../../assets/img/calendar.png')}
                     customStyles={{
                         dateIcon: {
                             height: 18,

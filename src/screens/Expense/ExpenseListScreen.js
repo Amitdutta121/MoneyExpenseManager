@@ -12,7 +12,7 @@ import {
 }
     from 'react-native'
 import {useSelector, useDispatch} from "react-redux";
-import {removeExpense, filterExpense} from "../redux/Actions/expense";
+import {removeExpense, filterExpense} from "../../redux/Actions/expense";
 import Icon from "react-native-vector-icons/FontAwesome";
 import ExpenseFilterModal from "./ExpenseFilterModal";
 
@@ -42,7 +42,7 @@ const ExpenseListScreen = (props)=>{
                         addFilterModalVisibility()
                     }}
                 >
-                    <Icon name="plus-circle" size={25} color="#fff" style={{marginRight:6, marginTop:2}} />
+                    <Icon name="filter" size={30} color="#fff" style={{marginRight:7, marginTop:2}} />
                 </TouchableOpacity>
             ),
         })

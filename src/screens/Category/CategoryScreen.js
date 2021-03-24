@@ -13,7 +13,7 @@ import {TouchableOpacity} from "react-native-gesture-handler";
 import AddCategoryModal from "./AddCategoryModal";
 import EditCategoryModal from "./EditCategoryModal";
 import {useDispatch, useSelector} from "react-redux";
-import {addCategory, editCategory, removeCategory} from "../redux/Actions/category";
+import {addCategory, editCategory, removeCategory} from "../../redux/Actions/category";
 
 const CategoryScreen = (props)=>{
 

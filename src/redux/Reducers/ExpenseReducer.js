@@ -48,12 +48,6 @@ const expenseReducer = (state= initialState,actions) =>{
             let filterByYear = state.expenseList.filter((value)=>{
                 let dDate = new Date(value.date);
                 let year = dDate.getFullYear()
-                let month = monthList[dDate.getMonth()+1]
-                let cDate = dDate.getDate();
-                console.log("-------")
-                console.log(year)
-                console.log(month)
-                console.log(cDate)
                 if (actions.payload.year === "All"){
                     return true;
                 }else{
@@ -62,13 +56,8 @@ const expenseReducer = (state= initialState,actions) =>{
             })
             let filterByMonth = filterByYear.filter((value)=>{
                 let dDate = new Date(value.date);
-                let year = dDate.getFullYear()
                 let month = monthList[dDate.getMonth()+1]
-                let cDate = dDate.getDate();
-                console.log("-------")
-                console.log(year)
-                console.log(month)
-                console.log(cDate)
+
                 if (actions.payload.month === "All"){
                     return true;
                 }else{
@@ -78,13 +67,7 @@ const expenseReducer = (state= initialState,actions) =>{
 
             let filterByWeek = filterByMonth.filter((value)=>{
                 let dDate = new Date(value.date);
-                let year = dDate.getFullYear()
-                let month = monthList[dDate.getMonth()+1]
                 let cDate = dDate.getDate();
-                console.log("-------")
-                console.log(year)
-                console.log(month)
-                console.log(cDate)
                 if (actions.payload.week === "All"){
                     return true;
                 }else if (actions.payload.week === "Week 1"){

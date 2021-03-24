@@ -5,11 +5,11 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import ScreenA from './ScreenA';
 import ScreenB from './ScreenB';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import CategoryScreen from "./screens/CategoryScreen";
-import AddExpenseScreen from "./screens/AddExpenseScreen";
-import ExpenseListScreen from "./screens/ExpenseListScreen";
+import CategoryScreen from "./screens/Category/CategoryScreen";
+import AddExpenseScreen from "./screens/Expense/AddExpenseScreen";
+import ExpenseListScreen from "./screens/Expense/ExpenseListScreen";
 import {createStackNavigator} from "@react-navigation/stack";
-import EditExpenseScreen from "./screens/EditExpenseScreen";
+import EditExpenseScreen from "./screens/Expense/EditExpenseScreen";
 
 
 const Drawer = createDrawerNavigator();

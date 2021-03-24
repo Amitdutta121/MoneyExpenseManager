@@ -13,8 +13,8 @@ import { TextInput,Button } from 'react-native-paper';
 import DatePicker from 'react-native-datepicker'
 import {useSelector, useDispatch} from "react-redux";
 import {Picker} from '@react-native-picker/picker';
-import {validateAddExpense} from "../services/expenseService";
-import {editExpense} from "../redux/Actions/expense";
+import {validateAddExpense} from "../../services/expenseService";
+import {editExpense} from "../../redux/Actions/expense";
 
 const EditExpenseScreen = (props)=>{
 
@@ -80,7 +80,7 @@ const EditExpenseScreen = (props)=>{
                     maxDate="31-12-3000"
                     confirmBtnText="Confirm"
                     cancelBtnText="Cancel"
-                    iconSource={require('../assets/img/calendar.png')}
+                    iconSource={require('../../assets/img/calendar.png')}
                     customStyles={{
                         dateIcon: {
                             height: 18,
