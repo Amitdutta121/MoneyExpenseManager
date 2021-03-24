@@ -1,6 +1,13 @@
 # RN-ExpenseManager
 > This is a simple expense tacker app using react-native.
 
+## Screenshot
+<img src="https://raw.githubusercontent.com/Amitdutta121/MoneyExpenseManager/master/pictures/1.jpg" width="200" height="400" />
+<img src="https://raw.githubusercontent.com/Amitdutta121/MoneyExpenseManager/master/pictures/2.jpg" width="200" height="400" />
+<img src="https://raw.githubusercontent.com/Amitdutta121/MoneyExpenseManager/master/pictures/3.jpg" width="200" height="400" />
+<img src="https://raw.githubusercontent.com/Amitdutta121/MoneyExpenseManager/master/pictures/4.jpg" width="200" height="400" />
+<img src="https://raw.githubusercontent.com/Amitdutta121/MoneyExpenseManager/master/pictures/5.jpg" width="200" height="400" />
+
 ## Included
 * @react-native-async-storage/async-storage: ^1.14.1,
 * @react-native-masked-view/masked-view: ^0.2.2,
