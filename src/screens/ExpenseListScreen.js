@@ -7,19 +7,58 @@ import {
     StatusBar,
     SafeAreaView,
     TouchableOpacity,
-    Alert
+    Alert,
+    RefreshControl
 }
     from 'react-native'
 import {useSelector, useDispatch} from "react-redux";
-import {removeExpense} from "../redux/Actions/expense";
+import {removeExpense, filterExpense} from "../redux/Actions/expense";
 import Icon from "react-native-vector-icons/FontAwesome";
+import ExpenseFilterModal from "./ExpenseFilterModal";
 
 
 const ExpenseListScreen = (props)=>{
 
     const expenseList = useSelector(state => state.expenseReducer.expenseList);
+    const filteredExpenseList = useSelector(state => state.expenseReducer.filteredExpenseList);
     const dispatch = useDispatch();
 
+    const [isFilter, setIsFilter] = useState(false);
+    const [usingFilter, setUsingFilter] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
+
+    useEffect(()=>{
+        setUsingFilter(false);
+        console.log("EXPENSE LIST", expenseList)
+        console.log("FILTERED EXPENSE LIST",filteredExpenseList)
+
+    },[])
+    useEffect(()=>{
+
+        props.navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity
+                    onPress={()=>{
+                        addFilterModalVisibility()
+                    }}
+                >
+                    <Icon name="plus-circle" size={25} color="#fff" style={{marginRight:6, marginTop:2}} />
+                </TouchableOpacity>
+            ),
+        })
+    },[])
+
+    const addFilterModalVisibility = ()=>{
+        setIsFilter(true)
+    }
+
+    const expenseFilterHandleSubmit = (week, month, year)=>{
+        setUsingFilter(true)
+        console.log(week)
+        console.log(month)
+        console.log(year)
+        dispatch(filterExpense(week, month, year))
+    }
 
 
     const Item = ({categoryName, amount, note, date, id}) => (
@@ -93,13 +132,27 @@ const ExpenseListScreen = (props)=>{
             id={item.id}
         />
     );
+    const _onRefresh = ()=>{
+        setRefreshing(true);
+        setUsingFilter(false);
+        setRefreshing(false);
+    }
 
     return (
             <SafeAreaView style={styles.container}>
                 <FlatList
-                    data={expenseList}
+                    data={(usingFilter)?filteredExpenseList:expenseList}
                     renderItem={renderItem}
                     keyExtractor={item => item.id.toString()}
+                    onRefresh={()=>{
+                        _onRefresh()
+                    }}
+                    refreshing={refreshing}
+                />
+                <ExpenseFilterModal
+                    modalVisible={isFilter}
+                    setModalVisible={setIsFilter}
+                    expenseFilterHandleSubmit={expenseFilterHandleSubmit}
                 />
             </SafeAreaView>
     )

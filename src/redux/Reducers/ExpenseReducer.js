@@ -1,6 +1,10 @@
-import {ADD_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE} from "../types";
+import {ADD_EXPENSE, EDIT_EXPENSE, DELETE_EXPENSE, FILTER_EXPENSE} from "../types";
+import {monthList} from "../../util/DateUtil";
+import moment from "moment";
+
 const initialState = {
-    expenseList:[]
+    expenseList:[],
+    filteredExpenseList:[]
 }
 
 const expenseReducer = (state= initialState,actions) =>{
@@ -39,6 +43,68 @@ const expenseReducer = (state= initialState,actions) =>{
                 ...state,
                 expenseList: [...dum]
 
+            }
+        case FILTER_EXPENSE:
+            let filterByYear = state.expenseList.filter((value)=>{
+                let dDate = new Date(value.date);
+                let year = dDate.getFullYear()
+                let month = monthList[dDate.getMonth()+1]
+                let cDate = dDate.getDate();
+                console.log("-------")
+                console.log(year)
+                console.log(month)
+                console.log(cDate)
+                if (actions.payload.year === "All"){
+                    return true;
+                }else{
+                    return year == actions.payload.year
+                }
+            })
+            let filterByMonth = filterByYear.filter((value)=>{
+                let dDate = new Date(value.date);
+                let year = dDate.getFullYear()
+                let month = monthList[dDate.getMonth()+1]
+                let cDate = dDate.getDate();
+                console.log("-------")
+                console.log(year)
+                console.log(month)
+                console.log(cDate)
+                if (actions.payload.month === "All"){
+                    return true;
+                }else{
+                    return month === actions.payload.month
+                }
+            })
+
+            let filterByWeek = filterByMonth.filter((value)=>{
+                let dDate = new Date(value.date);
+                let year = dDate.getFullYear()
+                let month = monthList[dDate.getMonth()+1]
+                let cDate = dDate.getDate();
+                console.log("-------")
+                console.log(year)
+                console.log(month)
+                console.log(cDate)
+                if (actions.payload.week === "All"){
+                    return true;
+                }else if (actions.payload.week === "Week 1"){
+                    return cDate>=0 && cDate<=7
+                }else if (actions.payload.week === "Week 2"){
+                    return cDate>7 && cDate<=14
+                }else if (actions.payload.week === "Week 3"){
+                    return cDate>14 && cDate<=21
+                }else if (actions.payload.week === "Week 4"){
+                    return cDate>21
+                }
+            })
+
+            console.log(actions)
+
+            return {
+                ...state,
+                filteredExpenseList: [
+                    ...filterByWeek
+                ]
             }
         default:
             return state;

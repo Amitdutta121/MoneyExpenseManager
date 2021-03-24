@@ -15,12 +15,13 @@ import {useSelector, useDispatch} from "react-redux";
 import {Picker} from '@react-native-picker/picker';
 import {validateAddExpense} from "../services/expenseService";
 import {addExpense} from "../redux/Actions/expense";
+import moment from "moment";
 
 const AddExpenseScreen = (props)=>{
 
     const [note, setNote] = useState("");
     const [amount, setAmount] = useState(0);
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(moment(). format('DD-MM-YYYY'));
 
 
     const categoryList = useSelector(state => state.categoryReducer.categoryList);
@@ -45,7 +46,7 @@ const AddExpenseScreen = (props)=>{
             amount
         )
         if (val === "ok"){
-            dispatch(addExpense(note, categorySelect, amount, date))
+            dispatch(addExpense(note, categorySelect, amount, moment(date, "DD-MM-YYYY")))
             props.navigation.navigate("expenseList")
             alert("Expense added");
         }else{

@@ -1,4 +1,4 @@
-import {ADD_EXPENSE, DELETE_EXPENSE, EDIT_EXPENSE} from "../types";
+import {ADD_EXPENSE, DELETE_EXPENSE, EDIT_EXPENSE,FILTER_EXPENSE} from "../types";
 
 export const addExpense = (note, categoryName, amount, date)=>(
     {
@@ -30,6 +30,16 @@ export const editExpense = (id, note, categoryName, amount,date)=>(
             categoryName,
             amount,
             date
+        }
+    }
+)
+export const filterExpense = (week, month,year)=>(
+    {
+        type:FILTER_EXPENSE,
+        payload:{
+            week,
+            month,
+            year
         }
     }
 )
