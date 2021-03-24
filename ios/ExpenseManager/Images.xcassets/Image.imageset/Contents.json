@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "campr-12_1_100x100.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "campr-12_1_1_200x200.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "campr-12_1_2_300x300.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
