@@ -6,6 +6,7 @@ import {
     StyleSheet
 } from 'react-native'
 import {useSelector} from "react-redux";
+import {TOTAL_EXPENSE} from "../../Theme/Strings";
 
 const DashboardScreen = ()=>{
 
@@ -27,8 +28,8 @@ const DashboardScreen = ()=>{
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                <Text style={{color:PRIMARY_COLOR}}>Total Expense</Text>
-                <Text style={{fontSize:40}}>{calculateExpense(expenseList)}</Text>
+                <Text style={{color:PRIMARY_COLOR}}>{TOTAL_EXPENSE}</Text>
+                <Text style={{fontSize:40}}>{`৳ ${calculateExpense(expenseList)}`}</Text>
             </View>
         </View>
     )

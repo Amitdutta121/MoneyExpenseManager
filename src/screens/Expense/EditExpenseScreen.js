@@ -17,6 +17,7 @@ import {validateAddExpense} from "../../services/expenseService";
 import {editExpense} from "../../redux/Actions/expense";
 import {PRIMARY_COLOR} from "../../Theme/Constant";
 import {styles} from "../../assets/styles/editExpenseStyles";
+import {AMOUNT_IN_TAKA, EXPENSE_ADDED, NOTES, UPDATE_EXPENSE} from "../../Theme/Strings";
 
 const EditExpenseScreen = (props)=>{
 
@@ -65,7 +66,7 @@ const EditExpenseScreen = (props)=>{
         )
         if (val === "ok"){
             dispatch(editExpense(id, note, categorySelect, amount,date))
-            alert("Expense Updated");
+            alert(EXPENSE_ADDED);
         }else{
             //validation failed
             alert(val)
@@ -129,7 +130,7 @@ const EditExpenseScreen = (props)=>{
             <View style={styles.item}>
                 <Text style={styles.input}>Amount</Text>
                 <TextInput
-                    label="Amount"
+                    label={AMOUNT_IN_TAKA}
                     mode="flat"
                     selectionColor="#2a688f"
                     style={{backgroundColor: "#fff",color:"#2a688f"}}
@@ -142,7 +143,7 @@ const EditExpenseScreen = (props)=>{
             <View style={styles.item}>
                 <Text style={styles.input}>Notes</Text>
                 <TextInput
-                    label="Notes"
+                    label={NOTES}
                     mode="flat | outlined"
                     selectionColor="#2a688f"
                     style={{backgroundColor: "#fff",color:{PRIMARY_COLOR}}}
@@ -155,7 +156,7 @@ const EditExpenseScreen = (props)=>{
                 <Button mode="contained" onPress={() => {
                     handleSubmit()
                 }}>
-                    Update Expense
+                    {UPDATE_EXPENSE}
                 </Button>
             </View>
 

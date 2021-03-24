@@ -18,6 +18,7 @@ import {validateAddExpense} from "../../services/expenseService";
 import {addExpense} from "../../redux/Actions/expense";
 //styles
 import {styles} from "../../assets/styles/addExpenseStyles"
+import {AMOUNT_IN_TAKA, EXPENSE_ADDED, NO_CATEGORY_ALERT, NOTES, SUBMIT} from "../../Theme/Strings";
 
 const AddExpenseScreen = (props)=>{
 
@@ -42,7 +43,7 @@ const AddExpenseScreen = (props)=>{
         if (categoryList.length > 0){
 
         }else{
-            alert("Please add a category first");
+            alert(NO_CATEGORY_ALERT);
         }
 
     },[])
@@ -71,7 +72,7 @@ const AddExpenseScreen = (props)=>{
             dispatch(addExpense(note, categorySelect, amount, moment(date, "DD-MM-YYYY")))
             //move to expense list
             props.navigation.navigate("expenseList")
-            alert("Expense added");
+            alert(EXPENSE_ADDED);
         }else{
             //validation failed
             alert(val)
@@ -152,7 +153,7 @@ const AddExpenseScreen = (props)=>{
             <View style={styles.item}>
                 <Text style={styles.input}>Amount</Text>
                 <TextInput
-                    label="Amount"
+                    label={AMOUNT_IN_TAKA}
                     mode="flat"
                     selectionColor="#2a688f"
                     style={{backgroundColor: "#fff",color:"#2a688f"}}
@@ -169,7 +170,7 @@ const AddExpenseScreen = (props)=>{
             <View style={styles.item}>
                 <Text style={styles.input}>Notes</Text>
                 <TextInput
-                    label="Notes"
+                    label={NOTES}
                     mode="flat | outlined"
                     selectionColor="#2a688f"
                     style={{backgroundColor: "#fff",color:"#2a688f"}}
@@ -186,7 +187,7 @@ const AddExpenseScreen = (props)=>{
                 <Button mode="contained" onPress={() => {
                     handleSubmit()
                 }}>
-                    Submit
+                    {SUBMIT}
                 </Button>
             </View>
 

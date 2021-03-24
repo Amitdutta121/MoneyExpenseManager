@@ -15,6 +15,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {removeExpense, filterExpense} from "../../redux/Actions/expense";
 import Icon from "react-native-vector-icons/FontAwesome";
 import ExpenseFilterModal from "./ExpenseFilterModal";
+import {AMOUNT, CATEGORY_NAME, NOTES} from "../../Theme/Strings";
 
 
 const ExpenseListScreen = (props)=>{
@@ -83,15 +84,15 @@ const ExpenseListScreen = (props)=>{
                         <Text style={styles.font15}>{new Date(date).toDateString()}</Text>
                     </View>
                     <View style={styles.singleItem}>
-                        <Text style={styles.singleItemTitle}>Category Name: </Text>
+                        <Text style={styles.singleItemTitle}>{CATEGORY_NAME}: </Text>
                         <Text style={styles.font15}>{categoryName}</Text>
                     </View>
                     <View style={styles.singleItem}>
-                        <Text style={styles.singleItemTitle}>Amount : </Text>
-                        <Text style={styles.font15}>{amount}</Text>
+                        <Text style={styles.singleItemTitle}>{AMOUNT} : </Text>
+                        <Text style={styles.font15}>{`৳ ${amount}`}</Text>
                     </View>
                     <View style={styles.singleItem}>
-                        <Text style={styles.singleItemTitle}>Note : </Text>
+                        <Text style={styles.singleItemTitle}>{NOTES} : </Text>
                         <Text style={styles.font15}>{note}</Text>
                     </View>
             </TouchableOpacity>

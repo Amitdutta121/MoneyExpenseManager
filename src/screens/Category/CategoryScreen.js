@@ -24,6 +24,7 @@ const CategoryScreen = (props)=>{
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [editCatName, setEditCatName] = useState("");
     const [editCatId, setEditCatId] = useState("");
+    const [refreshing, setRefreshing] = useState(false);
 
 
     const addCategoryName = (inputText)=>{
@@ -97,6 +98,10 @@ const CategoryScreen = (props)=>{
     const renderItem = ({ item }) => (
         <Item title={item.name} id={item.id} />
     );
+    const _onRefresh = ()=>{
+        setRefreshing(true);
+        setRefreshing(false);
+    }
     return (
         <View style={{flex:1,backgroundColor:"#dee9ed"}}>
             <AddCategoryModal isModalVisible={isModalVisible} addCategoryName={addCategoryName} setIsModalVisible={setIsModalVisible}/>
@@ -112,6 +117,10 @@ const CategoryScreen = (props)=>{
                     data={categoryList}
                     renderItem={renderItem}
                     keyExtractor={item => item.id.toString()}
+                    onRefresh={()=>{
+                        _onRefresh()
+                    }}
+                    refreshing={refreshing}
                 />
             }
         </View>

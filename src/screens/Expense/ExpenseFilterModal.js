@@ -5,12 +5,12 @@ import {Picker} from "@react-native-picker/picker";
 import {weekList, monthList, yearList} from "../../util/DateUtil";
 
 const ExpenseFilterModal = (props)=>{
-    const [amount, setAmount] = useState("");
 
+    //set week
     const [week, setWeek] = useState(weekList[0]);
+    //set month
     const [month, setMonth] = useState(monthList[0]);
-
-
+    //set year
     const [year, setYear] = useState(yearList[0]);
 
     return(
@@ -20,17 +20,10 @@ const ExpenseFilterModal = (props)=>{
                 transparent={true}
                 visible={props.modalVisible}
                 onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
                     props.setModalVisible(!props.modalVisible);
                 }}
             >
                 <View style={styles.centeredView}>
-                        {/*<Pressable*/}
-                        {/*    style={[styles.button, styles.buttonClose]}*/}
-                        {/*    onPress={() => props.setModalVisible(!props.modalVisible)}*/}
-                        {/*>*/}
-                        {/*    <Text style={styles.textStyle}>Hide Modal</Text>*/}
-                        {/*</Pressable>*/}
                         <View style={styles.item}>
                             <Text style={styles.input}>Select Week</Text>
                             <Picker
