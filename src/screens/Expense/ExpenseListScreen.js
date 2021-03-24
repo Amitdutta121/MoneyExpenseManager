@@ -19,20 +19,28 @@ import ExpenseFilterModal from "./ExpenseFilterModal";
 
 const ExpenseListScreen = (props)=>{
 
+    //fetch ExpenseList
     const expenseList = useSelector(state => state.expenseReducer.expenseList);
+    //fetch Filtered Expense List
     const filteredExpenseList = useSelector(state => state.expenseReducer.filteredExpenseList);
     const dispatch = useDispatch();
 
+    // Flag for modal
     const [isFilter, setIsFilter] = useState(false);
+    //flag for setting datasource
     const [usingFilter, setUsingFilter] = useState(false);
+    //pull to refresh flag
     const [refreshing, setRefreshing] = useState(false);
 
+    //first-time
     useEffect(()=>{
         setUsingFilter(false);
         console.log("EXPENSE LIST", expenseList)
         console.log("FILTERED EXPENSE LIST",filteredExpenseList)
 
     },[])
+
+    //set header button
     useEffect(()=>{
 
         props.navigation.setOptions({
@@ -47,11 +55,12 @@ const ExpenseListScreen = (props)=>{
             ),
         })
     },[])
-
+    //model visibility from child
     const addFilterModalVisibility = ()=>{
         setIsFilter(true)
     }
 
+    //submit
     const expenseFilterHandleSubmit = (week, month, year)=>{
         setUsingFilter(true)
         console.log(week)
@@ -60,7 +69,7 @@ const ExpenseListScreen = (props)=>{
         dispatch(filterExpense(week, month, year))
     }
 
-
+    //data loop
     const Item = ({categoryName, amount, note, date, id}) => (
         <View style={styles.item}>
             <TouchableOpacity
@@ -97,7 +106,7 @@ const ExpenseListScreen = (props)=>{
 
         </View>
     );
-
+    //edit expense
     const editExpense = (categoryName, amount, note, date, id)=>{
         props.navigation.navigate("editExpense",{
             categoryName,
@@ -107,6 +116,8 @@ const ExpenseListScreen = (props)=>{
             id
         });
     }
+
+    //delete expense
     const deleteExpense = (id)=>{
         Alert.alert(
             "Are you sure want to delete this expense ?",
@@ -122,7 +133,7 @@ const ExpenseListScreen = (props)=>{
         );
     }
 
-
+    //on render call component
     const renderItem = ({ item }) => (
         <Item
             categoryName={item.categoryName}
@@ -132,6 +143,7 @@ const ExpenseListScreen = (props)=>{
             id={item.id}
         />
     );
+    //pull to refresh
     const _onRefresh = ()=>{
         setRefreshing(true);
         setUsingFilter(false);

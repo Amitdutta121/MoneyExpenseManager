@@ -15,17 +15,24 @@ import {useSelector, useDispatch} from "react-redux";
 import {Picker} from '@react-native-picker/picker';
 import {validateAddExpense} from "../../services/expenseService";
 import {editExpense} from "../../redux/Actions/expense";
+import {PRIMARY_COLOR} from "../../Theme/Constant";
+import {styles} from "../../assets/styles/editExpenseStyles";
 
 const EditExpenseScreen = (props)=>{
 
+    //controlled component note
     const [note, setNote] = useState("");
+    //controlled component amount
     const [amount, setAmount] = useState(0);
+    //controlled component date
     const [date, setDate] = useState();
+    //setId from the previous screen
     const [id, setId] = useState();
 
 
+    //fetch categoryList for dropdown
     const categoryList = useSelector(state => state.categoryReducer.categoryList);
-
+    //selected category
     const [categorySelect, setCategorySelect] = useState();
 
     const dispatch = useDispatch();
@@ -36,6 +43,7 @@ const EditExpenseScreen = (props)=>{
         })
     },[])
 
+    //get data from prevvious screen and save to state
     useEffect(()=>{
         let {categoryName, amount, note, date, id} = props.route.params
         setCategorySelect(categoryName)
@@ -46,7 +54,10 @@ const EditExpenseScreen = (props)=>{
     },[])
 
 
+    //update expense on press
     const handleSubmit = ()=>{
+
+        //validation
         let val = validateAddExpense(
             note,
             categorySelect,
@@ -56,6 +67,7 @@ const EditExpenseScreen = (props)=>{
             dispatch(editExpense(id, note, categorySelect, amount,date))
             alert("Expense Updated");
         }else{
+            //validation failed
             alert(val)
         }
     }
@@ -64,8 +76,7 @@ const EditExpenseScreen = (props)=>{
     return (
         <ScrollView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={{flex:1, backgroundColor:"#dee9ed"}}
-
+            style={styles.container}
         >
 
             <View style={styles.item}>
@@ -83,19 +94,13 @@ const EditExpenseScreen = (props)=>{
                     iconSource={require('../../assets/img/calendar.png')}
                     customStyles={{
                         dateIcon: {
-                            height: 18,
-                            width: 18
+                            ...styles.dateIcon
                         },
                         dateInput: {
-                            borderTopWidth: 0,
-                            borderLeftWidth: 0,
-                            borderRightWidth: 0,
-                            borderBottomColor: '#a8b3d2'
+                            ...styles.dateInput
                         },
                         dateText: {
-                            color: 'black',
-                            fontSize: 16,
-                            fontWeight: '500',
+                            ...styles.dateText
                         }
                     }}
                     onDateChange={(date) => {
@@ -140,7 +145,7 @@ const EditExpenseScreen = (props)=>{
                     label="Notes"
                     mode="flat | outlined"
                     selectionColor="#2a688f"
-                    style={{backgroundColor: "#fff",color:"#2a688f"}}
+                    style={{backgroundColor: "#fff",color:{PRIMARY_COLOR}}}
                     value={note}
                     onChangeText={text => setNote(text)}
                 />
@@ -159,22 +164,6 @@ const EditExpenseScreen = (props)=>{
     )
 }
 
-const styles = StyleSheet.create({
-    item :{
-        backgroundColor: '#fff',
-        padding: 10,
-        marginVertical: 8,
-        marginHorizontal: 16,
-        borderRadius:10,
-        borderWidth: 1,
-        borderColor:'#fff',
-    },
-    input: {
-        fontSize:17,
-        marginLeft:10,
-        color:"#2a688f",
-        fontWeight:'bold'
-    },
-})
+
 
 export default EditExpenseScreen;
