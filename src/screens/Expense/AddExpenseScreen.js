@@ -44,6 +44,7 @@ const AddExpenseScreen = (props)=>{
 
         }else{
             alert(NO_CATEGORY_ALERT);
+            props.navigation.navigate("manageCategory");
         }
 
     },[])

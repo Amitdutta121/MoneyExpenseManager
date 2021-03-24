@@ -113,15 +113,22 @@ const CategoryScreen = (props)=>{
                 setIsModalVisible={setIsEditModalVisible}
             />
             {
-                <FlatList
-                    data={categoryList}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id.toString()}
-                    onRefresh={()=>{
-                        _onRefresh()
-                    }}
-                    refreshing={refreshing}
-                />
+                (categoryList.length > 0)?(
+                    <FlatList
+                        data={categoryList}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id.toString()}
+                        onRefresh={()=>{
+                            _onRefresh()
+                        }}
+                        refreshing={refreshing}
+                    />
+                ):(
+                    <View style={{justifyContent: 'center', alignItems:'center'}}>
+                        <Text style={{fontSize:20}}>Please add a category</Text>
+                    </View>
+                )
+
             }
         </View>
     )

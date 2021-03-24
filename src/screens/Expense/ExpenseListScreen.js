@@ -153,15 +153,24 @@ const ExpenseListScreen = (props)=>{
 
     return (
             <SafeAreaView style={styles.container}>
-                <FlatList
-                    data={(usingFilter)?filteredExpenseList:expenseList}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id.toString()}
-                    onRefresh={()=>{
-                        _onRefresh()
-                    }}
-                    refreshing={refreshing}
-                />
+                {
+                    (expenseList.length > 0)?(
+                        <FlatList
+                            data={(usingFilter)?filteredExpenseList:expenseList}
+                            renderItem={renderItem}
+                            keyExtractor={item => item.id.toString()}
+                            onRefresh={()=>{
+                                _onRefresh()
+                            }}
+                            refreshing={refreshing}
+                        />
+                    ):(
+                        <View style={{justifyContent: 'center', alignItems:'center'}}>
+                            <Text style={{fontSize:20}}>Please add a expense</Text>
+                        </View>
+                    )
+                }
+
                 <ExpenseFilterModal
                     modalVisible={isFilter}
                     setModalVisible={setIsFilter}
