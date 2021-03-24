@@ -8,13 +8,21 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import CategoryScreen from "./screens/CategoryScreen";
 import AddExpenseScreen from "./screens/AddExpenseScreen";
 import ExpenseListScreen from "./screens/ExpenseListScreen";
+import {createStackNavigator} from "@react-navigation/stack";
+import EditExpenseScreen from "./screens/EditExpenseScreen";
 
 
 const Drawer = createDrawerNavigator();
+const ExpenseStack = createStackNavigator();
+const RootStack = createStackNavigator();
+
+
+const navOptionHandler = () => ({
+    headerShown: false
+})
 
 function App() {
   return (
-    <NavigationContainer>
       <Drawer.Navigator
         initialRouteName="Screen_A"
         drawerPosition='left'
@@ -73,7 +81,7 @@ function App() {
               name="addExpense"
               component={AddExpenseScreen}
               options={{
-                  title: 'Add Expense'
+                  // title: 'Add Expense'
                   // drawerIcon: ({ focused }) => (
                   //   <FontAwesome5
                   //     name="btc"
@@ -98,9 +106,33 @@ function App() {
                   // )
               }}
           />
+
       </Drawer.Navigator>
-    </NavigationContainer>
   )
 }
 
-export default App;
+const RootNavigation = ()=>{
+    return (
+        <NavigationContainer>
+            <RootStack.Navigator>
+                <RootStack.Screen name="launchPage" component={App} options={navOptionHandler}/>
+                <RootStack.Screen name="editExpense" component={EditExpenseScreen} options={{
+                    headerShown: true,
+                    swipeEnabled: true,
+                    gestureEnabled: true,
+                    headerTitleAlign: 'center',
+                    headerStyle: {
+                        backgroundColor: '#19678d'
+                    },
+                    headerTintColor: '#ffffff',
+                    headerTitleStyle: {
+                        // fontSize: 25,
+                        // fontWeight: 'bold'
+                    }
+                }}/>
+            </RootStack.Navigator>
+        </NavigationContainer>
+    )
+}
+
+export default RootNavigation;

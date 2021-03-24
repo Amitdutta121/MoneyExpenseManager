@@ -14,27 +14,35 @@ import DatePicker from 'react-native-datepicker'
 import {useSelector, useDispatch} from "react-redux";
 import {Picker} from '@react-native-picker/picker';
 import {validateAddExpense} from "../services/expenseService";
-import {addExpense} from "../redux/Actions/expense";
+import {editExpense} from "../redux/Actions/expense";
 
-const AddExpenseScreen = (props)=>{
+const EditExpenseScreen = (props)=>{
 
     const [note, setNote] = useState("");
     const [amount, setAmount] = useState(0);
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState();
+    const [id, setId] = useState();
 
 
     const categoryList = useSelector(state => state.categoryReducer.categoryList);
 
-    const [categorySelect, setCategorySelect] = useState((categoryList.length>0)?categoryList[0].name:"");
+    const [categorySelect, setCategorySelect] = useState();
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        if (categoryList.length > 0){
+        props.navigation.setOptions({
+            title: 'Edit Expense',
+        })
+    },[])
 
-        }else{
-            alert("Please add a category first");
-        }
+    useEffect(()=>{
+        let {categoryName, amount, note, date, id} = props.route.params
+        setCategorySelect(categoryName)
+        setDate(date)
+        setAmount(amount)
+        setNote(note)
+        setId(id);
     },[])
 
 
@@ -45,9 +53,8 @@ const AddExpenseScreen = (props)=>{
             amount
         )
         if (val === "ok"){
-            dispatch(addExpense(note, categorySelect, amount, date))
-            props.navigation.navigate("expenseList")
-            alert("Expense added");
+            dispatch(editExpense(id, note, categorySelect, amount,date))
+            alert("Expense Updated");
         }else{
             alert(val)
         }
@@ -143,7 +150,7 @@ const AddExpenseScreen = (props)=>{
                 <Button mode="contained" onPress={() => {
                     handleSubmit()
                 }}>
-                    Submit
+                    Update Expense
                 </Button>
             </View>
 
@@ -170,4 +177,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default AddExpenseScreen;
+export default EditExpenseScreen;

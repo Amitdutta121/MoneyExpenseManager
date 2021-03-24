@@ -24,7 +24,7 @@ const expenseReducer = (state= initialState,actions) =>{
                 ]
             }
         case EDIT_EXPENSE:
-            let dum = [...state.categoryList];
+            let dum = [...state.expenseList];
             for(let i=0; i<dum.length; i++){
                 if (dum[i].id === actions.payload.id){
                     dum[i].note = actions.payload.note
@@ -32,11 +32,12 @@ const expenseReducer = (state= initialState,actions) =>{
                     dum[i].amount = actions.payload.amount
                     dum[i].date = actions.payload.date
                 }
+                console.log(dum)
                 console.log(actions);
             }
             return {
                 ...state,
-                categoryList: [...dum]
+                expenseList: [...dum]
 
             }
         default:

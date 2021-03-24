@@ -21,7 +21,7 @@ export const removeExpense = (id)=>(
 )
 
 
-export const editExpense = (id, note, categoryName, amount)=>(
+export const editExpense = (id, note, categoryName, amount,date)=>(
     {
         type:EDIT_EXPENSE,
         payload:{
