@@ -17,28 +17,36 @@ import {addCategory, editCategory, removeCategory} from "../../redux/Actions/cat
 
 const CategoryScreen = (props)=>{
 
+    //fetch categoryList
     const categoryList = useSelector(state => state.categoryReducer.categoryList);
     const dispatch = useDispatch();
 
+    //modal
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+    //controlled components
     const [editCatName, setEditCatName] = useState("");
     const [editCatId, setEditCatId] = useState("");
     const [refreshing, setRefreshing] = useState(false);
 
 
+    //add category name
     const addCategoryName = (inputText)=>{
         console.log(inputText);
         dispatch(addCategory(inputText));
     }
 
+    //change category model visibility
     const addCategoryModalVisibility = ()=>{
         setIsModalVisible(true);
     }
+
+    //first time
     useEffect(()=>{
         console.log(categoryList);
     },[categoryList])
 
+    //set navigation options
     useEffect(()=>{
         props.navigation.setOptions({
             headerRight: () => (
@@ -53,6 +61,7 @@ const CategoryScreen = (props)=>{
         })
     },[])
 
+    //delete category
     const deleteCategoryData = (id)=>{
         Alert.alert(
             "Are you sure want to delete this category ?",
@@ -68,10 +77,13 @@ const CategoryScreen = (props)=>{
         );
     }
 
+    //editCategory
     const editCategoryName = (id, name)=>{
         dispatch(editCategory(id, name))
         setIsEditModalVisible(false)
     }
+
+    //Flatlist render component
     const Item = ({ title, id }) => (
         <View style={{...styles.item}}>
             <TouchableOpacity

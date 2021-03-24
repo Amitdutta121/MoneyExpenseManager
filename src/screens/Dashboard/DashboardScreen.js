@@ -9,13 +9,11 @@ import {useSelector} from "react-redux";
 import {TOTAL_EXPENSE} from "../../Theme/Strings";
 
 const DashboardScreen = ()=>{
-
+    //fetch expenseList
     const expenseList = useSelector(state => state.expenseReducer.expenseList);
 
 
-    useEffect(()=>{
-
-    },[])
+    //calculate total expense
     const calculateExpense = (expList)=>{
         let totalExpense = 0;
         if (expenseList.length > 0){
