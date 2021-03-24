@@ -1,3 +1,4 @@
+//validation service for editing and adding expense
 export const validateAddExpense = (note,
                                    categorySelect,
                                    amount)=>{
