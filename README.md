@@ -1,7 +1,7 @@
 # RN-ExpenseManager
 > This is a simple expense tacker app using react-native.
 
-##Included
+## Included
 * @react-native-async-storage/async-storage: ^1.14.1,
 * @react-native-masked-view/masked-view: ^0.2.2,
 * @react-native-picker/picker: ^1.12.0,
