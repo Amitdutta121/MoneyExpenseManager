@@ -6,7 +6,8 @@ import {
     FlatList,
     StatusBar,
     StyleSheet,
-    Alert
+    Alert,
+    BackHandler
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {TouchableOpacity} from "react-native-gesture-handler";
@@ -28,6 +29,21 @@ const CategoryScreen = (props)=>{
     const [editCatName, setEditCatName] = useState("");
     const [editCatId, setEditCatId] = useState("");
     const [refreshing, setRefreshing] = useState(false);
+
+    //on hardware back press
+    useEffect(() => {
+        const backAction = () => {
+            props.navigation.navigate("dashboard")
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        return () => backHandler.remove();
+    }, []);
 
 
     //add category name

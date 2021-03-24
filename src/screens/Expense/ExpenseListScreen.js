@@ -8,7 +8,7 @@ import {
     SafeAreaView,
     TouchableOpacity,
     Alert,
-    RefreshControl
+    RefreshControl, BackHandler
 }
     from 'react-native'
 import {useSelector, useDispatch} from "react-redux";
@@ -133,6 +133,21 @@ const ExpenseListScreen = (props)=>{
             ]
         );
     }
+
+    //on hardware back press
+    useEffect(() => {
+        const backAction = () => {
+            props.navigation.navigate("dashboard")
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        return () => backHandler.remove();
+    }, []);
 
     //on render call component
     const renderItem = ({ item }) => (

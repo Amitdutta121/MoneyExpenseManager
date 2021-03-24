@@ -3,9 +3,9 @@ import {
     View,
     Text,
     StyleSheet,
-    ScrollView,
+    ScrollView, BackHandler,
 }
-from 'react-native'
+    from 'react-native'
 import { TextInput,Button } from 'react-native-paper';
 import DatePicker from 'react-native-datepicker'
 //Dropdown
@@ -37,6 +37,21 @@ const AddExpenseScreen = (props)=>{
     //dispatch redux actions
     const dispatch = useDispatch();
 
+
+    //on hardware back press
+    useEffect(() => {
+        const backAction = () => {
+            props.navigation.navigate("dashboard")
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        return () => backHandler.remove();
+    }, []);
 
     //first-time
     useEffect(()=>{
