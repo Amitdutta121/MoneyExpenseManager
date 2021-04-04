@@ -56,7 +56,6 @@ const AddExpenseScreen = (props)=>{
     //first-time
     useEffect(()=>{
         if (categoryList.length > 0){
-
         }else{
             alert(NO_CATEGORY_ALERT);
             props.navigation.navigate("manageCategory");

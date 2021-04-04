@@ -68,7 +68,11 @@ const CategoryScreen = (props)=>{
             headerRight: () => (
                 <TouchableOpacity
                     onPress={()=>{
-                        addCategoryModalVisibility()
+                        if (Platform.OS === "ios"){
+                            props.navigation.navigate("addCategory");
+                        }else{
+                            addCategoryModalVisibility()
+                        }
                     }}
                 >
                     <Icon name="plus-circle" size={25} color="#fff" style={{marginRight:6, marginTop:2}} />
